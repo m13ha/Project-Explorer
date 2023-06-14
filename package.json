@@ -8,13 +8,15 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "buildTSC": "tsc",
+    "build": "parcel index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.2.5",
+    "parcel": "^2.9.2",
     "typescript": "^5.1.3"
   }
 }
