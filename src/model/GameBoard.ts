@@ -26,7 +26,7 @@ export class GameBoard {
     private initInternalBoard() {
         this.internalBoard = [];
         this.size = Settings.getGameDifficulty();
-        this.randomizer = new Randomizer(this.size);
+        this.randomizer = new Randomizer(this.size ** 2);
 
         // Push in the initial empty block.
         this.internalBoard.push([0]);

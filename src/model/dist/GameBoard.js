@@ -14,7 +14,7 @@ var GameBoard = /** @class */ (function () {
     GameBoard.prototype.initInternalBoard = function () {
         this.internalBoard = [];
         this.size = Settings_1.Settings.getGameDifficulty();
-        this.randomizer = new Randomizer_1.Randomizer(this.size);
+        this.randomizer = new Randomizer_1.Randomizer(Math.pow(this.size, 2));
         // Push in the initial empty block.
         this.internalBoard.push([0]);
         for (var row = 1; row <= this.size; ++row) {
