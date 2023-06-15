@@ -2,5 +2,10 @@
 exports.__esModule = true;
 var GameStateManager_1 = require("./GameStateManager");
 var gsm = new GameStateManager_1.GameStateManager();
-var board = gsm.getGameBoard().getInternalBoard();
-board.forEach(function (i) { return console.log(i); });
+var board = gsm.getGameBoard();
+board.getInternalBoard().forEach(function (element) {
+    console.log(element);
+});
+console.log('\nboard state: ', board.getCompletionState());
+console.log('\ncomplete state: ', gsm.completionState);
+console.log('\n', gsm.isGameComplete());

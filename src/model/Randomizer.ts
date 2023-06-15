@@ -16,7 +16,7 @@ export class Randomizer {
     }
 
 
-    private shuffle() {
+    private shuffle(): void {
         for (let i = this.array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [this.array[i], this.array[j]] = [this.array[j], this.array[i]];
@@ -24,7 +24,7 @@ export class Randomizer {
     }
 
 
-    next() {
+    next(): number {
         return this.array[this.index < this.array.length? this.index++ : this.array.length - 1];
     }
 }

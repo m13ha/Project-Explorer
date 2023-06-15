@@ -9,8 +9,12 @@ export class GameBoard {
     // Internal representation of the game board
     private internalBoard: number[][];
     private size: number
+    private dimension: number
 
     private randomizer: Randomizer;
+    
+    // The current sum of each row on the board
+    private completionState: number[]
 
 
     constructor() {
@@ -18,16 +22,24 @@ export class GameBoard {
     }
 
 
-    init() {
+    init(): void {
+        this.size = Settings.getGameDifficulty();
+        this.dimension = this.size ** 2;
+        this.randomizer = new Randomizer(this.dimension);
+        
         this.initInternalBoard();
+
+        // Initialize the completion state: Must be done after the game board is initialized
+        // The completion state for each row is calculated by computing the sum of conscecutive numbers (where the first number is the first number on the row)
+        this.completionState = new Array(this.size + 1);
+        this.internalBoard.forEach((value, index) => {
+            this.completionState[index] = value.reduce((a, b) => a + b);
+        });
     }
 
 
-    private initInternalBoard() {
+    private initInternalBoard(): void {
         this.internalBoard = [];
-        this.size = Settings.getGameDifficulty();
-        this.randomizer = new Randomizer(this.size ** 2);
-
         // Push in the initial empty block.
         this.internalBoard.push([0]);
 
@@ -40,8 +52,18 @@ export class GameBoard {
     }
 
 
-    getInternalBoard() {
+    getSize(): number {
+        return this.size;
+    }
+
+
+    getInternalBoard(): number[][] {
         return this.internalBoard;
+    }
+
+
+    getCompletionState(): number[] {
+        return this.completionState;
     }
 
 
