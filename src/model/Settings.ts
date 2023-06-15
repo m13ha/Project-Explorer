@@ -16,7 +16,7 @@ export class Settings
     private constructor() {}
 
 
-    public static getGameDifficulty() {
+    public static getGameDifficulty(): number {
         return Settings.gameDifficulty;
     }
 }
