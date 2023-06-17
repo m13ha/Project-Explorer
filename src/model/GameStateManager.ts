@@ -53,6 +53,10 @@ export class GameStateManager {
         return this.completionState;
     }
 
+    getGameBoard(): Gameboard {
+        return this.gameBoard;
+    }
+
     getGameboardAsArray(): number[][] {
         return this.gameBoard.getInternalBoard();
     }

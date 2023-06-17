@@ -34,6 +34,9 @@ var GameStateManager = /** @class */ (function () {
     GameStateManager.prototype.getCompletionState = function () {
         return this.completionState;
     };
+    GameStateManager.prototype.getGameBoard = function () {
+        return this.gameBoard;
+    };
     GameStateManager.prototype.getGameboardAsArray = function () {
         return this.gameBoard.getInternalBoard();
     };
