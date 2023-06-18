@@ -1,3 +1,254 @@
-body {
-  background-color: pink;
+/* I'd explain the css later in another commit. */
+
+:root {
+  --board-width: 90vw;
 }
+
+.puzzle-board {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* For three columns*/
+  /* grid-template-rows: 1fr 1fr 1fr; */
+  /* gap: 1px; */
+  background-color: aqua;
+  /* width: max-content; */
+  /* padding: 3px; */
+  width: var(--board-width);
+  /* height: 90vw; */
+  margin-left: auto;
+  margin-right: auto;
+}
+.puzzle-board.x4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.puzzle-board.x5 {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.tile {
+  /* width: 213.33px;
+  height: 160px; */
+  height: calc(var(--board-width) / 3);
+  background-size: var(--board-width) var(--board-width);
+  /* background-size: ; */
+  /* border: 1px solid rgba(255, 255, 255, 0.5); */
+  /* background-color: yellow; */
+  /* background-image: url(https://res.cloudinary.com/healerc/image/upload/w_1000,ar_1:1,c_fill,g_auto/v1686970523/project-explorer/uniben_ycgk7c.jpg); */
+  background-image: url(https://res.cloudinary.com/healerc/image/upload/v1686970516/project-explorer/university-of-benin-aka-maingate-in-benin-city-edo-state-2F7127A_xapvnw.jpg);
+  background-repeat: no-repeat;
+  transition-property: transform;
+  transition-duration: 500ms;
+}
+.tile.x4 {
+  height: calc(var(--board-width) / 4);
+}
+.tile.x5 {
+  height: calc(var(--board-width) / 5);
+}
+
+.panel {
+  /* visibility: panel; */
+  background-color: blue;
+  /* border: 1px solid green; */
+  background-image: none !important;
+  grid-column: 2 / 4;
+  grid-row: 1;
+  /* width: 100% !important; */
+}
+.panel.x4 {
+  grid-column: 2 / 5;
+}
+.panel.x5 {
+  grid-column: 2 / 6;
+}
+.empty {
+  background-image: none;
+  background-color: inherit;
+}
+.tile-00 {
+  /* The very first tile is always has the background position at 0,0 */
+  background-position: 0% 0%;
+}
+/* .tile:hover {
+        transform: translateY(-160px);
+      } */
+
+/* The variants of the second tile of the game */
+.tile-01 {
+  background-position: 50% 0%;
+}
+
+/* The tiles will be divided into more pieces on medium and hard difficulties
+the background-position's reflects the smaller divisions */
+.tile-01.x4 {
+  background-position: 33.3% 0%; /* 100 / 4 */
+}
+.tile-01.x5 {
+  background-position: 25% 0%; /* 100 / 5 */
+}
+
+/* The third tile (and last tile for 3x3) */
+.tile-02 {
+  background-position: 100% 0%;
+}
+.tile-02.x4 {
+  background-position: 66.6% 0%;
+}
+.tile-02.x5 {
+  background-position: 50% 0%;
+}
+
+/* The fourth tile (and last for 4x4) */
+.tile-03.x4 {
+  background-position: 100% 0%;
+}
+.tile-03.x5 {
+  background-position: 75% 0%;
+}
+/* The fifth tile (only last for 5x5) */
+.tile-04.x5 {
+  background-position: 100% 0%;
+}
+/* END OF FIRST ROW */
+
+/* SECOND ROW */
+/* Same idea goes except we are watchful both for the x and y positioning */
+.tile-10 {
+  background-position: 0% 50%;
+}
+.tile-10.x4 {
+  background-position: 0% 33.3%;
+}
+.tile-10.x5 {
+  background-position: 0% 25%;
+}
+
+.tile-11 {
+  background-position: 50% 50%;
+}
+.tile-11.x4 {
+  background-position: 33.3% 33.3%;
+}
+.tile-11.x5 {
+  background-position: 25% 25%;
+}
+
+/* Last tile of the second row of 3x3 */
+.tile-12 {
+  background-position: 100% 50%;
+}
+.tile-12.x4 {
+  background-position: 66.6% 33.3%;
+}
+.tile-12.x5 {
+  background-position: 50% 25%;
+}
+
+.tile-13.x4 {
+  background-position: 100% 33.3%;
+}
+.tile-13.x5 {
+  background-position: 75% 25%;
+}
+
+.tile-14.x5 {
+  background-position: 100% 25%;
+}
+
+/* Last row of 3x3 */
+.tile-20 {
+  background-position: 0% 100%;
+}
+.tile-20.x4 {
+  background-position: 0% 66.6%;
+}
+.tile-20.x5 {
+  background-position: 0% 50%;
+}
+
+.tile-21 {
+  background-position: 50% 100%;
+}
+.tile-21.x4 {
+  background-position: 33.3% 66.6%;
+}
+.tile-21.x5 {
+  background-position: 25% 50%;
+}
+
+.tile-22 {
+  /* Last Last tile in 3x3 row */
+  background-position: 100% 100%;
+}
+.tile-22.x4 {
+  background-position: 66.6% 66.6%;
+}
+.tile-22.x5 {
+  background-position: 50% 50%;
+}
+
+.tile-23.x4 {
+  background-position: 100% 66.6%;
+}
+.tile-23.x5 {
+  background-position: 75% 50%;
+}
+
+.tile-24.x5 {
+  background-position: 100% 50%;
+}
+
+/* Only 4x4 and 5x5 has a fourth row */
+.tile-30.x4 {
+  background-position: 0% 100%;
+}
+.tile-30.x5 {
+  background-position: 0% 75%;
+}
+
+.tile-31.x4 {
+  background-position: 33.3% 100%;
+}
+.tile-31.x5 {
+  background-position: 25% 75%;
+}
+
+.tile-32.x4 {
+  background-position: 66.6% 100%;
+}
+.tile-32.x5 {
+  background-position: 50% 75%;
+}
+
+.tile-33.x4 {
+  /* Last last tile in a 4x4 grid */
+  background-position: 100% 100%;
+}
+.tile-33.x5 {
+  background-position: 75% 75%;
+}
+
+.tile-34.x5 {
+  background-position: 100% 75%;
+}
+
+/* From here only 5x5 tiles exist */
+.tile-40.x5 {
+  background-position: 0% 100%;
+}
+.tile-41.x5 {
+  background-position: 25% 100%;
+}
+.tile-42.x5 {
+  background-position: 50% 100%;
+}
+.tile-43.x5 {
+  background-position: 75% 100%;
+}
+.tile-44.x5 {
+  background-position: 100% 100%;
+}
+
+/* @media (min-width: 768px) {
+  .puzzle-board {
+  }
+} */

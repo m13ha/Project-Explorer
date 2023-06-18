@@ -10,7 +10,7 @@
     <title>Project Explorer</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="src/css/style.css" />
+    <link rel="stylesheet" href="src/css/style.css" type="text/css" />
   </head>
   <body>
     <!--[if lt IE 7]>
@@ -19,7 +19,143 @@
         <a href="#">upgrade your browser</a> to improve your experience.
       </p>
     <![endif]-->
-    <h1 id="change-to-blue">Hello World!</h1>
+    <h1>Hello World!</h1>
+    <button id="change-picture">Change picture</button>
+
+    <!-- Templates that will be used in the program to generate 3x3, 4x4 or 5x5 boards -->
+    <template id="x3">
+      <main class="puzzle-board">
+        <div class="tile empty">empty</div>
+        <div class="tile panel">
+          <div class="difficulty-container">
+            <select name="difficulty" id="difficulty">
+              <option value="easy" selected>Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="tile tile-00">1</div>
+        <div class="tile tile-01">2</div>
+        <div class="tile tile-02">3</div>
+
+        <div class="tile tile-10">4</div>
+        <div class="tile tile-11">5</div>
+        <div class="tile tile-12">6</div>
+
+        <div class="tile tile-20">7</div>
+        <div class="tile tile-21">8</div>
+        <div class="tile tile-22">9</div>
+      </main>
+    </template>
+    <template id="x4">
+      <main class="puzzle-board x4">
+        <div class="tile empty x4">0</div>
+        <div class="tile panel x4">
+          <div class="difficulty-container">
+            <select name="difficulty" id="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="tile tile-00 x4">1</div>
+        <div class="tile tile-01 x4">2</div>
+        <div class="tile tile-02 x4">3</div>
+        <div class="tile tile-03 x4">4</div>
+
+        <div class="tile tile-10 x4">5</div>
+        <div class="tile tile-11 x4">6</div>
+        <div class="tile tile-12 x4">7</div>
+        <div class="tile tile-13 x4">8</div>
+
+        <div class="tile tile-20 x4">9</div>
+        <div class="tile tile-21 x4">10</div>
+        <div class="tile tile-22 x4">11</div>
+        <div class="tile tile-23 x4">12</div>
+
+        <div class="tile tile-30 x4">13</div>
+        <div class="tile tile-31 x4">14</div>
+        <div class="tile tile-32 x4">15</div>
+        <div class="tile tile-33 x4">16</div>
+      </main>
+    </template>
+    <template id="x5">
+      <main class="puzzle-board x5">
+        <div class="tile empty x5">0</div>
+        <div class="tile panel x5">
+          <div class="difficulty-container">
+            <select name="difficulty" id="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard" selected>Hard</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="tile tile-00 x5">1</div>
+        <div class="tile tile-01 x5">2</div>
+        <div class="tile tile-02 x5">3</div>
+        <div class="tile tile-03 x5">4</div>
+        <div class="tile tile-04 x5">5</div>
+
+        <div class="tile tile-10 x5">6</div>
+        <div class="tile tile-11 x5">7</div>
+        <div class="tile tile-12 x5">8</div>
+        <div class="tile tile-13 x5">9</div>
+        <div class="tile tile-14 x5">10</div>
+
+        <div class="tile tile-20 x5">11</div>
+        <div class="tile tile-21 x5">12</div>
+        <div class="tile tile-22 x5">13</div>
+        <div class="tile tile-23 x5">14</div>
+        <div class="tile tile-24 x5">15</div>
+
+        <div class="tile tile-30 x5">16</div>
+        <div class="tile tile-31 x5">17</div>
+        <div class="tile tile-32 x5">18</div>
+        <div class="tile tile-33 x5">19</div>
+        <div class="tile tile-34 x5">20</div>
+
+        <div class="tile tile-40 x5">21</div>
+        <div class="tile tile-41 x5">22</div>
+        <div class="tile tile-42 x5">23</div>
+        <div class="tile tile-43 x5">24</div>
+        <div class="tile tile-44 x5">25</div>
+      </main>
+    </template>
+
+    <!-- The puzzle board rendered on screen -->
+    <div id="container">
+      <main class="puzzle-board">
+        <div class="tile empty">empty</div>
+        <div class="tile panel">
+          <div class="difficulty-container">
+            <select name="difficulty" id="difficulty">
+              <option value="easy" selected>Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="tile tile-00">1</div>
+        <div class="tile tile-01">2</div>
+        <div class="tile tile-02">3</div>
+
+        <div class="tile tile-10">4</div>
+        <div class="tile tile-11">5</div>
+        <div class="tile tile-12">6</div>
+
+        <div class="tile tile-20">7</div>
+        <div class="tile tile-21">8</div>
+        <div class="tile tile-22">9</div>
+      </main>
+    </div>
+
     <script src="src/views/index.ts"></script>
   </body>
 </html>
