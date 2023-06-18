@@ -1,23 +1,24 @@
 "use strict";
+// Handles all responses relating to gameplay - from setting up gameplay resources to responding to user inputs
 exports.__esModule = true;
 exports.GameStateManager = void 0;
-// Handles all responses relating to gameplay - from setting up gameplay resources to responding to user inputs
-var GameBoard_1 = require("./GameBoard");
+var Gameboard_1 = require("./Gameboard");
 var GameStateManager = /** @class */ (function () {
     // Things we want to be done only once throughout the game
     function GameStateManager() {
-        this.gameBoard = new GameBoard_1.GameBoard();
+        this.gameBoard = new Gameboard_1.Gameboard();
         this.init();
     }
     GameStateManager.prototype.init = function () {
         this.gameBoard.init();
         this.completionState = new Array(this.gameBoard.getCompletionState().length);
         this.completionState[0] = 0; // First row sums to 0
-        var nth = this.completionState.length - 1;
-        // Compute the sums of the subsequent rows
-        for (var i = 1; i <= nth; ++i) {
-            var initial = (i - 1) * nth + 1;
-            this.completionState[i] = (2 * initial + (nth - 1)) * nth / 2;
+        var n = this.completionState.length - 1;
+        // Compute the sums of the subsequent rows by computing the sum of consecutive integers, where "initial" is the first integer
+        for (var i = 1; i <= n; ++i) {
+            var initial = (i - 1) * n + 1;
+            // sum = (2a + (n-1)d) * n/2 -> sum of the numbers in an arithmetric progression sequence
+            this.completionState[i] = (2 * initial + (n - 1)) * n / 2; // a = initial, d = 1
         }
     };
     // Updates the game's internal state: generally handles gameplay logic
@@ -30,8 +31,14 @@ var GameStateManager = /** @class */ (function () {
                 return false;
         return true;
     };
+    GameStateManager.prototype.getCompletionState = function () {
+        return this.completionState;
+    };
     GameStateManager.prototype.getGameBoard = function () {
         return this.gameBoard;
+    };
+    GameStateManager.prototype.getGameboardAsArray = function () {
+        return this.gameBoard.getInternalBoard();
     };
     return GameStateManager;
 }());

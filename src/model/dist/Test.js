@@ -7,5 +7,5 @@ board.getInternalBoard().forEach(function (element) {
     console.log(element);
 });
 console.log('\nboard state: ', board.getCompletionState());
-console.log('\ncomplete state: ', gsm.completionState);
+console.log('\ncomplete state: ', gsm.getCompletionState());
 console.log('\n', gsm.isGameComplete());

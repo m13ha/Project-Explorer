@@ -5,7 +5,7 @@ import { Vector2 } from "./Vector2";
 import { Randomizer } from "./Randomizer";
 
 
-export class GameBoard {
+export class Gameboard {
     // Internal representation of the game board
     private internalBoard: number[][];
     private size: number
@@ -30,7 +30,7 @@ export class GameBoard {
         this.initInternalBoard();
 
         // Initialize the completion state: Must be done after the game board is initialized
-        // The completion state for each row is calculated by computing the sum of conscecutive numbers (where the first number is the first number on the row)
+        // The current completion state of the game board is calculated by computing the sum of all numbers in the rows
         this.completionState = new Array(this.size + 1);
         this.internalBoard.forEach((value, index) => {
             this.completionState[index] = value.reduce((a, b) => a + b);
