@@ -85,9 +85,27 @@ const changeDifficulty = (difficulty: string) => {
   const select = tileList.querySelector("#difficulty") as HTMLSelectElement;
   select.addEventListener("change", handleChangeDifficulty);
 
+  tileList.querySelectorAll(".tile:not(.empty, .panel)").forEach((tile) => {
+    tile.addEventListener("click", handleTileClick);
+  });
+
   // Replace the currently active puzzle with the one with the new difficulty
   const activePuzzle = document.querySelector("#container > .puzzle-board");
   if (activePuzzle) {
     activePuzzle.parentNode?.replaceChild(tileList, activePuzzle);
   } else throw new Error("No puzzle-board");
+};
+
+const handleTileClick = (event: Event) => {
+  const target = event.target as HTMLDivElement;
+  if (!target.classList.contains("empty")) {
+    // If an empty element is not clicked, replace the clicked with the empty
+    const emptyDiv = document.querySelector(".empty") as HTMLDivElement;
+    const emptyDivClass = emptyDiv.className;
+
+    emptyDiv.className = target.className;
+    emptyDiv.addEventListener("click", handleTileClick);
+    target.className = emptyDivClass;
+    target.removeEventListener("click", handleTileClick);
+  }
 };
