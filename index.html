@@ -21,20 +21,12 @@
     <![endif]-->
     <h1>Hello World!</h1>
     <button id="change-picture">Change picture</button>
-
+    <button id="start">Start game</button>
     <!-- Templates that will be used in the program to generate 3x3, 4x4 or 5x5 boards -->
     <template id="x3">
       <main class="puzzle-board">
         <div class="tile empty">empty</div>
-        <div class="tile panel">
-          <div class="difficulty-container">
-            <select name="difficulty" id="difficulty">
-              <option value="easy" selected>Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-          </div>
-        </div>
+        <div class="tile panel"></div>
 
         <div class="tile tile-00">1</div>
         <div class="tile tile-01">2</div>
@@ -52,15 +44,7 @@
     <template id="x4">
       <main class="puzzle-board x4">
         <div class="tile empty x4">0</div>
-        <div class="tile panel x4">
-          <div class="difficulty-container">
-            <select name="difficulty" id="difficulty">
-              <option value="easy">Easy</option>
-              <option value="medium" selected>Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-          </div>
-        </div>
+        <div class="tile panel x4"></div>
 
         <div class="tile tile-00 x4">1</div>
         <div class="tile tile-01 x4">2</div>
@@ -86,15 +70,7 @@
     <template id="x5">
       <main class="puzzle-board x5">
         <div class="tile empty x5">0</div>
-        <div class="tile panel x5">
-          <div class="difficulty-container">
-            <select name="difficulty" id="difficulty">
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard" selected>Hard</option>
-            </select>
-          </div>
-        </div>
+        <div class="tile panel x5"></div>
 
         <div class="tile tile-00 x5">1</div>
         <div class="tile tile-01 x5">2</div>
@@ -129,17 +105,18 @@
     </template>
 
     <!-- The puzzle board rendered on screen -->
+    <div class="difficulty-container">
+      <select name="difficulty" id="difficulty">
+        <option value="easy" selected>Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
     <div id="container">
-      <main class="puzzle-board">
+      <!-- <main class="puzzle-board">
         <div class="tile empty">empty</div>
         <div class="tile panel">
-          <div class="difficulty-container">
-            <select name="difficulty" id="difficulty">
-              <option value="easy" selected>Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-          </div>
+          
         </div>
 
         <div class="tile tile-00">1</div>
@@ -153,7 +130,7 @@
         <div class="tile tile-20">7</div>
         <div class="tile tile-21">8</div>
         <div class="tile tile-22">9</div>
-      </main>
+      </main> -->
     </div>
 
     <script src="src/views/index.ts"></script>
