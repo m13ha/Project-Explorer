@@ -1,5 +1,5 @@
 "use strict";
-// Handles all responses relating to gameplay - from setting up gameplay resources to responding to user inputs
+// Handles inner gameplay logic
 exports.__esModule = true;
 exports.GameStateManager = void 0;
 var Gameboard_1 = require("./Gameboard");

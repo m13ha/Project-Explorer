@@ -9,7 +9,7 @@ export class Settings
     }
 
     // Default difficulty
-    private static gameDifficulty = Settings.GameDifficulty['easy'];
+    private static gameDifficulty = Settings.GameDifficulty['normal'];
     
 
     // Not meant to be instatiable

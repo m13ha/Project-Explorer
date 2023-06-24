@@ -1,4 +1,4 @@
-// Handles all responses relating to gameplay - from setting up gameplay resources to responding to user inputs
+// Handles inner gameplay logic
 
 import { Gameboard } from "./Gameboard";
 
