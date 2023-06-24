@@ -1,3 +1,5 @@
+import { GameStateManager } from "../model/GameStateManager";
+
 // Since this is just testing, I am including everything in one index.ts file
 // Subsequently I will separate them into modules and other files but I need to
 // Get the functionality on the table first before I modularize
@@ -80,20 +82,7 @@ const changeDifficulty = (difficulty: string) => {
     true
   ) as HTMLDivElement;
 
-  // This is required as the event listener for the change difficulty select
-  // defined above does not apply to those in the template so they have to be readded again
-  const select = tileList.querySelector("#difficulty") as HTMLSelectElement;
-  select.addEventListener("change", handleChangeDifficulty);
-
-  tileList.querySelectorAll(".tile:not(.empty, .panel)").forEach((tile) => {
-    tile.addEventListener("click", handleTileClick);
-  });
-
-  // Replace the currently active puzzle with the one with the new difficulty
-  const activePuzzle = document.querySelector("#container > .puzzle-board");
-  if (activePuzzle) {
-    activePuzzle.parentNode?.replaceChild(tileList, activePuzzle);
-  } else throw new Error("No puzzle-board");
+  createTilePuzzle(tileList);
 };
 
 const handleTileClick = (event: Event) => {
@@ -109,3 +98,101 @@ const handleTileClick = (event: Event) => {
     target.removeEventListener("click", handleTileClick);
   }
 };
+
+// The action of starting a game
+
+const startButton = document.getElementById("start");
+startButton?.addEventListener("click", startGame);
+
+const GameDifficulty = {
+  easy: 3,
+  medium: 4,
+  hard: 5,
+};
+
+function startGame() {
+  const gameManager = new GameStateManager();
+
+  const board = gameManager.getGameBoard();
+  console.log("board", board);
+
+  const selectDifficulty = document.querySelector(
+    "#difficulty"
+  ) as HTMLSelectElement;
+
+  if (
+    selectDifficulty.value === "easy" &&
+    board.getSize() === GameDifficulty.easy
+  ) {
+    // Both the view and the board model has the same difficulty
+    console.log(board.getInternalBoard());
+
+    console.log(`x${GameDifficulty.easy}`);
+    // Repetition (for now)
+    const template = document.getElementById(
+      `x${GameDifficulty.easy}`
+    ) as HTMLTemplateElement;
+    const tileList = template.content.firstElementChild?.cloneNode(
+      true
+    ) as HTMLDivElement;
+
+    // I expect the total elements in the game corresponds,
+    // though I should test this
+    // tileList.childNodes.forEach((node, index) => {
+    //   const viewCoords = getCoordsFromNumber();
+    // })
+    const internalBoard = board.getInternalBoard();
+    for (let i = 0; i < internalBoard.length; i++) {
+      for (let j = 0; j < internalBoard[i].length; j++) {
+        const index = internalBoard[i][j];
+        const tileCoords = getCoordsFromNumber(index, GameDifficulty.easy);
+        const tile = tileList.querySelector(`.${tileCoords}`);
+        if (!tile) throw new Error("Something went wrong");
+        tileList.appendChild(tile);
+      }
+    }
+
+    createTilePuzzle(tileList);
+  }
+}
+
+function getCoordsFromNumber(index: number, size: number): string {
+  if (index === 0) {
+    return "empty";
+  } else if (index > size ** 2) {
+    throw new Error(`Index ${index} cannot be greater than size ${size}`);
+  } else {
+    return computeCoordinates();
+  }
+
+  function computeCoordinates() {
+    const row = Math.ceil(index / size - 1);
+    const col = index - size * row - 1;
+    return `tile-${row}${col}`;
+  }
+}
+
+function createTilePuzzle(tileList: HTMLDivElement) {
+  // This is required as the event listener for the change difficulty select
+  // defined above does not apply to those in the template so they have to be readded again
+  // const select = tileList.querySelector("#difficulty") as HTMLSelectElement;
+  // select.addEventListener("change", handleChangeDifficulty);
+
+  tileList.querySelectorAll(".tile:not(.empty, .panel)").forEach((tile) => {
+    tile.addEventListener("click", handleTileClick);
+  });
+
+  // Replace the currently active puzzle with the one with the new difficulty
+  // const activePuzzle = document.querySelector("#container > .puzzle-board");
+  const container = document.getElementById("container");
+  if (container) {
+    container.appendChild(tileList);
+    // activePuzzle.parentNode?.replaceChild(tileList, activePuzzle);
+  } else {
+    const container = document.createElement("div");
+    container.id = "container";
+    container.appendChild(tileList);
+
+    document.body.appendChild(container);
+  }
+}
