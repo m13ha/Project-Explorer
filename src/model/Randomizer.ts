@@ -20,8 +20,8 @@ export class Randomizer {
 
     private randomize(): void {
         for (let i = this.array.length - 1; i > 0; i--) {
-            // Generate an index between 0 up to i. The element at that index, j,  will be swapped with the element at index i
-            const j = Math.floor(Math.random() * (i + 1));
+            // Generate an index from 1 up to i. The element at the random index, j,  will be swapped with the element at index i
+            const j = Math.floor(Math.random() * i + 1);
             [this.array[i], this.array[j]] = [this.array[j], this.array[i]];
         }
     }

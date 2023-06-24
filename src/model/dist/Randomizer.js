@@ -14,8 +14,8 @@ var Randomizer = /** @class */ (function () {
     Randomizer.prototype.randomize = function () {
         var _a;
         for (var i = this.array.length - 1; i > 0; i--) {
-            // Generate an index between 0 up to i. The element at that index, j,  will be swapped with the element at index i
-            var j = Math.floor(Math.random() * (i + 1));
+            // Generate an index from 1 up to i. The element at the random index, j,  will be swapped with the element at index i
+            var j = Math.floor(Math.random() * i + 1);
             _a = [this.array[j], this.array[i]], this.array[i] = _a[0], this.array[j] = _a[1];
         }
     };

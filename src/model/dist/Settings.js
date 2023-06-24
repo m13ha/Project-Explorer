@@ -15,7 +15,7 @@ var Settings = /** @class */ (function () {
         hard: 5
     };
     // Default difficulty
-    Settings.gameDifficulty = Settings.GameDifficulty['easy'];
+    Settings.gameDifficulty = Settings.GameDifficulty['normal'];
     return Settings;
 }());
 exports.Settings = Settings;
