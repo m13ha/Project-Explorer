@@ -1,7 +1,7 @@
 /* I'd explain the css later in another commit. */
 
 :root {
-  --board-width: 90vw;
+  --board-width: 30vw;
 }
 
 .puzzle-board {
