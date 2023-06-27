@@ -16,6 +16,7 @@
 #parcel
 /parcel-cache
 /.cache
+/.vscode
 
 # misc
 .DS_Store
