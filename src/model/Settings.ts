@@ -9,11 +9,15 @@ export class Settings
     }
 
     // Default difficulty
-    private static gameDifficulty = Settings.GameDifficulty['normal'];
+    private static gameDifficulty;;
     
 
     // Not meant to be instatiable
     private constructor() {}
+
+    public static setGameDifficulty (difficulty) {
+        this.gameDifficulty = Settings.GameDifficulty[difficulty]
+    }
 
 
     public static getGameDifficulty(): number {
