@@ -20,8 +20,8 @@
       </p>
     <![endif]-->
     <h1>Hello World!</h1>
-    <button id="change-picture">Change picture</button>
-    <button id="start">Start game</button>
+    <!-- <button id="change-picture">Change picture</button> -->
+
     <!-- Templates that will be used in the program to generate 3x3, 4x4 or 5x5 boards -->
     <template id="x3">
       <main class="puzzle-board">
@@ -105,13 +105,19 @@
     </template>
 
     <!-- The puzzle board rendered on screen -->
-    <div class="difficulty-container">
+    <form id="start-game">
       <select name="difficulty" id="difficulty">
         <option value="easy" selected>Easy</option>
         <option value="normal">Normal</option>
         <option value="hard">Hard</option>
       </select>
-    </div>
+      <select name="puzzle-image-id">
+        <option value="0" selected>Uniben old picture</option>
+        <option value="1">Uniben recent picture</option>
+        <option value="2">Sam Ogbemudia Stadium</option>
+      </select>
+      <button type="submit">Start game</button>
+    </form>
     <div id="container">
       <!-- <main class="puzzle-board">
         <div class="tile empty">empty</div>
