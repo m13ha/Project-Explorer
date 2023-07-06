@@ -4,27 +4,22 @@ import { getCoordsFromNumber } from "./utils";
 
 export const GameDifficulty = {
   easy: 3,
-  medium: 4,
+  normal: 4,
   hard: 5,
 };
+
+export type GameDifficultyType = keyof typeof GameDifficulty;
 
 export default class View {
   private board: Gameboard;
 
   constructor(
-    private difficulty: keyof typeof GameDifficulty,
+    private difficulty: GameDifficultyType,
     private imgUrl: string,
     private containerDiv: HTMLElement,
-    private tileTemplate: HTMLDivElement,
     private tileDivList: HTMLDivElement
   ) {
     this.board = launchGame(difficulty);
-    const template = document.getElementById(
-      `x${GameDifficulty[difficulty]}`
-    ) as HTMLTemplateElement;
-    this.tileDivList = template.content.firstElementChild?.cloneNode(
-      true
-    ) as HTMLDivElement;
   }
 
   start() {
@@ -43,17 +38,19 @@ export default class View {
       }
     }
 
-    this.createTilePuzzle(this.tileDivList);
+    this.createTilePuzzle();
   }
 
-  private createTilePuzzle(tileDivList: HTMLDivElement) {
-    tileDivList
+  private createTilePuzzle() {
+    this.tileDivList
       .querySelectorAll(".tile:not(.empty, .panel)")
       .forEach((tile) => {
-        tile.addEventListener("click", this.handleTileClick);
+        const tileDiv = tile as HTMLDivElement;
+        tileDiv.style.backgroundImage = `url(${this.imgUrl})`;
+        tileDiv.addEventListener("click", this.handleTileClick);
       });
     this.containerDiv.innerHTML = "";
-    this.containerDiv.appendChild(tileDivList);
+    this.containerDiv.appendChild(this.tileDivList);
   }
 
   private handleTileClick(event: Event) {
